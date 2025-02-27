@@ -54,7 +54,7 @@ yargs.command({
     command: 'read',
     describe: 'Read a note',
     handler: function() {
-        console.log('Reading note')
+        console.log(chalk.green.bold('Reading note'))
     }
 })
 // add, remove, read, list commands
