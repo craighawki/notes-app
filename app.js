@@ -1,6 +1,7 @@
-const chalk = require('chalk')
-const yargs = require('yargs')
-const notes = require('./notes.js')
+const chalk = require('chalk')      // chalk module
+const fs = require('fs')           // file system module    
+const yargs = require('yargs')   // yargs module            
+const notes = require('./notes.js')     
 
 // Customize yargs version
 yargs.version('1.1.0')
@@ -21,7 +22,7 @@ yargs.command({
             type: 'string'
         }
     },// describe is the description of the command
-    handler: function (argv) {
+    handler (argv) {    // argv is the argument vector
         notes.addNote(argv.title, argv.body) // addNote is the function in notes.js
     }
 })
@@ -37,7 +38,7 @@ yargs.command({
             type: 'string' 
         }
     },
-    handler: function(argv) {
+    handler (argv) {
         notes.removeNote(argv.title)
     }
 })
@@ -45,15 +46,15 @@ yargs.command({
 yargs.command({
     command: 'list',
     describe: 'Listing all notes',
-    handler: function() {
-        console.log('Listing all notes')
+    handler () {
+        notes.listNotes()
     }
 })
 
 yargs.command({
     command: 'read',
     describe: 'Read a note',
-    handler: function() {
+    handler () {
         console.log(chalk.green.bold('Reading note'))
     }
 })
