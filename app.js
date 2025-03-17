@@ -1,5 +1,4 @@
-const chalk = require('chalk')      // chalk module
-const fs = require('fs')           // file system module    
+const chalk = require('chalk')      // chalk module  
 const yargs = require('yargs')   // yargs module            
 const notes = require('./notes.js')     
 
@@ -54,8 +53,15 @@ yargs.command({
 yargs.command({
     command: 'read',
     describe: 'Read a note',
-    handler () {
-        console.log(chalk.green.bold('Reading note'))
+    builder: {
+        title: {
+            describe: 'Note title',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler (argv) {
+        notes.readNote(argv.title)
     }
 })
 // add, remove, read, list commands
